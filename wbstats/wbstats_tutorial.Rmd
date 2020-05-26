@@ -21,7 +21,7 @@ Highlights from the package include:
 * The ability to query and retrieve data from different languages^[Support across the different languages varies: some are are very well supported, while others are limited. Be diligent in checking for `NAs` when using different languages in the dataset.]
 * Compatility with other R packages (grepl, dplyr, ggplot2, etc.)
 
-For more information on all of the great features for the package, see the [official documentation](https://cran.r-project.org/web/packages/wbstats/wbstats.pdf).
+For more information on all of the great features for the package, see the [official documentation](https://cran.r-project.org/web/packages/wbstats/wbstats.pdf) that largely guided this tutorial.
 
 ### Downloading packages 
 
@@ -102,15 +102,32 @@ co2_gdp_wide <- wb(country = c("US", "FR"), indicator = c("EN.ATM.CO2E.PC", "NY.
 head(co2_gdp_wide)
 ```
 
-Testing out the plotting for time series
+### Putting the data to work
+
+Now that we have seen how to examine and pull in the data using the API, we can start doing some simple analyses. So far, we have worked with the GDP and CO2 emissions indicators. Let's use a different indicator, `NY.GNP.PCAP.CD`, which captures the gross national income. 
+
+First, we will create an object called `gni` using the same search methods we used above to specify our indicator of interest, the countries we want to analyse, and the years we are interested in. Note: I used the `mrv` function here, which stands for "Most Recent Value" and is a replacement for start and end dates. It's a nice feature to use, especially when you do not know start and end dates and when you would like to use the `freq` function to plot monthly, quarterly, etc. series.
+
+Let's take a look at the GNI for France and Great Britain over a 12 year span. 
+
 
 ```{r}
-co2_data2 <- wb(indicator = "EN.ATM.CO2E.PC", freq = "Y", POSIXct = TRUE)
+dat <- wb(country = c("FRA", "GBR"), indicator = "NY.GNP.PCAP.CD", mrv = 12)
+head(dat)
 
-head(co2_data2)
 ```
 
-Plot something using `ggplot2` package:
+Now we can plot these data to get a better sense of the trends between the two groups using `ggplot2` for our visualisations. There are some interesting take-aways here, notably the large dip in France's GNI in 2017 and the dip in Great Britain's 2008 and 2011. 
+
+```{r}
+library(ggplot2)
+
+ggplot(dat, aes(x = date, y = value)) + geom_line(aes(colour = country, group = country)) +
+ labs(title = "Gross National Income", x = "Year", y = "GNI per capita, Atlas method (current US$)")
+
+```
+
+
 
 
 ### **BONUS**: Using R Markdown? Embed a searchable table of results^[This only works for dynamic, not static, documents such as html. If you choose to knit your file to a PDF or Word document, the `DT` functionalities do not work.]
