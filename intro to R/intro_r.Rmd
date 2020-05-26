@@ -1,5 +1,5 @@
 ---
-title: "Introduction to `R`"
+title: "Introduction to R"
 author: "Stefani Langehennig"
 date: "26/05/2020"
 output: html_document
@@ -9,8 +9,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## `R` for the Win
+## R for the Win
 
-This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html).
+This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time. Hadley Wickham, one of R's biggest gurus, has a wealth of resources that are free and easily accessible to beginners. If you're already familiar with R and need to get started on data science tasks, I highly recommend using [R for Data Science](https://r4ds.had.co.nz/) in your day-to-day.
 
 The tutorial will be based on the [`tidyverse`](https://www.tidyverse.org/) suite of packages. 
