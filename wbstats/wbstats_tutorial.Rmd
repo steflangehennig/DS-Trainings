@@ -134,11 +134,12 @@ ggplot(dat, aes(x = date, y = value)) + geom_line(aes(colour = country, group = 
 
 As an added bonus, we can embed the results of our queries in a data table in our document. The `DT` package in R lets you do this very easily. The output can be tailored to show as many lines from the results as you wish, includes a search bar, and provides the option to filter, to name a few.
 
-Let's embed a table of results for our `co2_gdp_wide` object so we can allow readers of our document to quickly access statistics for their year, country, and indicator of choice. 
+Let's embed a table of results for our `co2_gdp_wide` object so we can allow readers of our document to quickly access statistics for their year, country, and indicator of choice. We can also export the data that we retrieve in our data table by including the option to 'copy' or put into a .csv, .pdf, etc. file extension.
 
 ```{r, warning=FALSE}
 library(DT)
-datatable(co2_gdp_wide, rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T))
+
+datatable(co2_gdp_wide, rownames = FALSE, filter="top", extensions = 'Buttons', options = list(pageLength = 5, scrollX=T, dom = 'Bfrtip', buttons = c('copy', 'csv', 'excel', 'pdf', 'print')))
 ```
 
 ### Conclusion
