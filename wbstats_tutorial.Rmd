@@ -1,0 +1,129 @@
+---
+title: "Introduction to `wbstats` package in R"
+author: "Stefani Langehennig, Senior Data Scientist"
+date: "21/05/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Easy access to the World Bank API
+
+This is a brief tutorial on accessing the World Bank data through the `wbstats` package in R, which provides access to all statistics and data files housed on the their website [here](http://data.worldbank.org/developers/api-overview) and associated [data catalogue](http://data.worldbank.org/developers/data-catalog-api) through their API. This is a tremendously helpful and straightforward tool for analysts and data scientists wishing to access global data that span decades and contain numerous socio-economic indicators.^[This tutorial assumes users have familiarity and basic knowledge of R.]
+
+In addition to easy accessibility to data that would otherwise take a lot of time to gather, the package includes a variety of helpful functions to help analyse the data once collected from the API. Taken together, the wbstats package allows for reproducibility and automation of otherwise cumbersome tasks with larger datasets. 
+
+Highlights from the package include:
+
+* The ability to query and retrieve data based on country
+* The ability to query and retrieve data from different languages^[Support across the different languages varies: some are are very well supported, while others are limited. Be diligent in checking for `NAs` when using different languages in the dataset.]
+* Compatility with other R packages (grepl, dplyr, ggplot2, etc.)
+
+For more information on all of the great features for the package, see the [official documentation](https://cran.r-project.org/web/packages/wbstats/wbstats.pdf).
+
+### Downloading packages 
+
+Before getting started, we need to download the requisite `wbstat` package into R. For this tutorial, we will first need to install the wbstats package and then import that library into our current working directory.
+```{r, warning=FALSE}
+#install.packages("wbstats")
+library(wbstats)
+```
+
+### General overview of the data
+
+To get a general feel for the World Bank data, the package provides the option of pulling in cached data from the API, which gives a useful list of the information we can access. Together with the `str` function, we can use the `wb_cachelist` function to grab the top level of data coming from the API. Looks like there are a handful of interesting data frames to work with!
+
+```{r, warning=FALSE}
+str(wb_cachelist, max.level = 1)
+
+```
+
+To get the most most up-to-date data in the cache list from the API, you can create an empty object and use the `wbcache` function. Note: the default language is English, so we will use that here. You can specify another language using the `lang` parameter.
+
+```{r}
+#wb_cache <- wbcache()
+
+```
+
+### Querying indicators
+
+The first thing we need to do is identify our indicators of interest. The `wbsearch()` function sifts through all of the indicators available from the World Bank API. There is an abundance of information that is returned when this function is called, including the description of the indicator, its source, and the associated name/id.
+
+Below, we create an object that will hold indicators identified with the string (or `pattern`) "poverty." The function defaults to only return the `indicator` and `indicatorDesc`. We can include extra parameters if we wish by calling `extra=TRUE` or `fields` and specifying other columns of interest.
+
+```{r}
+poverty_vars <- wbsearch(pattern = "poverty")
+
+# let's take a look at the first few observations
+head(poverty_vars)
+
+# specifying "sourceOrg" as an additional field of interest
+poverty_vars2 <- wbsearch(pattern = "poverty", fields = c("sourceOrg"))
+
+```
+
+Another feature of the `wbsearch` function is its compatibility with regex. This allows you to search for multiple strings (e.g. words) using the `pattern` parameter to match on strings in the indicators. This will return indicators with these words in them.
+
+```{r}
+povempledu_vars <- wbsearch(pattern = "poverty|employment|education")
+head(povempledu_vars)
+
+```
+
+### Pulling in the data
+
+After we have identified the indicators we are interested in exploring/using, we can use the `wb` function to pull the actual data into R from the World Bank API. It defaults to all countries, which can be fine-tuned by calling the `country` function and specifying the countries you are most interested in.
+
+Let's take a look at the variable that captures CO2 emissions, `EN.ATM.CO2E.PC`, by creating an object that captures observations for that indicator from 1995 to 2015.
+
+```{r}
+co2_data <- wb(indicator = "EN.ATM.CO2E.PC", startdate = 1995, enddate = 2015)
+
+head(co2_data)
+
+```
+
+Let's also query the data using more than one indicator and specifing only one country. We will call this object `co2_gdp_long` and it will contain observations from the United States for the CO2 emissions and GDP per capita indicators. Note the data format is long.
+
+```{r}
+co2_gdp_data <- wb(country = c("US", "FR"), indicator = c("EN.ATM.CO2E.PC", "NY.GDP.MKTP.CD"),
+                   startdate = 2000, enddate = 2015)
+
+head(co2_gdp_data)
+```
+Should your analyses necessitate, the data can also be returned in a wide format. This is done by specifying `return_wide=TRUE` in your query.
+
+```{r}
+co2_gdp_wide <- wb(country = c("US", "FR"), indicator = c("EN.ATM.CO2E.PC", "NY.GDP.MKTP.CD"),
+                   startdate = 2000, enddate = 2015, return_wide = TRUE)
+
+head(co2_gdp_wide)
+```
+
+Testing out the plotting for time series
+
+```{r}
+co2_data2 <- wb(indicator = "EN.ATM.CO2E.PC", freq = "Y", POSIXct = TRUE)
+
+head(co2_data2)
+```
+
+Plot something using `ggplot2` package:
+
+
+### **BONUS**: Using R Markdown? Embed a searchable table of results^[This only works for dynamic, not static, documents such as html. If you choose to knit your file to a PDF or Word document, the `DT` functionalities do not work.]
+
+As an added bonus, we can embed the results of our queries in a data table in our document. The `DT` package in R lets you do this very easily. The output can be tailored to show as many lines from the results as you wish, includes a search bar, and provides the option to filter, to name a few.
+
+Let's embed a table of results for our `co2_gdp_wide` object so we can allow readers of our document to quickly access statistics for their year, country, and indicator of choice. 
+
+```{r, warning=FALSE}
+library(DT)
+datatable(co2_gdp_wide, rownames = FALSE, filter="top", options = list(pageLength = 5, scrollX=T))
+```
+
+### Conclusion
+
+The World Bank API provides a wealth of data that is publicly accessible and very useful to researchers and analysts who need quick summary statistics of socio-economic situations across the world. The `wbstats` package has made it much easier to download, query, and visualise these data by creating a number of functions that remove the heavy lifting normally associated with these tasks. We have only scratched the tip of the iceberg when it comes to using the package. I encourage everyone to dig deeper into the documentaton and play around with all of the capabiltiies it includes.
