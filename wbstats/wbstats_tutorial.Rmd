@@ -1,6 +1,6 @@
 ---
 title: "Introduction to `wbstats` package in R"
-author: "Stefani Langehennig, Senior Data Scientist"
+author: "Stefani Langehennig"
 date: "21/05/2020"
 output: html_document
 ---
