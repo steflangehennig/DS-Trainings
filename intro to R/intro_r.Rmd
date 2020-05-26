@@ -15,4 +15,3 @@ This is a brief tutorial to get started using the programming language [R](https
 
 The tutorial will be based on the [`tidyverse`](https://www.tidyverse.org/) suite of packages. 
 
-Putting in a test sentence for demonstration. now we're going to push. i'll make another change 
