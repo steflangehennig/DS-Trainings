@@ -1,0 +1,14 @@
+---
+title: "Introduction to `R`"
+author: "Stefani Langehennig"
+date: "26/05/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## `R` for the Win
+
+This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html).
