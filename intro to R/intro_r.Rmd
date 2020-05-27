@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R for the Win
 
-This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time. Hadley Wickham, one of R's biggest gurus, has a wealth of resources that are free and easily accessible to beginners. If you're already familiar with R and need guidance on data science tasks, I highly recommend using [R for Data Science](https://r4ds.had.co.nz/) in your day-to-day.
+This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time. Hadley Wickham, one of R's biggest gurus, has a wealth of resources that are free and easily accessible to beginners. 
 
 The tutorial will be based on the [`tidyverse`](https://www.tidyverse.org/) suite of packages. 
 
@@ -35,8 +35,10 @@ The tutorial will be based on the [`tidyverse`](https://www.tidyverse.org/) suit
 
 Here. Discuss the multitude of things you can do in addition to what was shown here today. Also provide links to other resources, including:
 
-* cheat sheets
-* R Studio Community
-* R presence on Twitter (especially R ladies!)
-* Julia Silge's blog
+* [R cheat sheets](https://rstudio.com/resources/cheatsheets/)
+* [R Studio Community](https://community.rstudio.com/)
+* [R presence on Twitter](https://twitter.com/Rbloggers), including [We are R-ladies!](https://twitter.com/WeAreRLadies)
+* [Mastering the tidyverse](https://www.tidyverse.org/learn/)
+* [R for Data Science](https://r4ds.had.co.nz/)
+* For more advanced stuff, see [Julia Silge's blog](https://juliasilge.com/blog/)
 
