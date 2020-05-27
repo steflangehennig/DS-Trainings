@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R for the Win
 
-This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time. Hadley Wickham, one of R's biggest gurus, has a wealth of resources that are free and easily accessible to beginners. 
+This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time.  
 
 The tutorial will be based on the [`tidyverse`](https://www.tidyverse.org/) suite of packages. 
 
@@ -21,7 +21,11 @@ The tutorial will be based on the [`tidyverse`](https://www.tidyverse.org/) suit
 
 ### Installing and Reading in Packages
 
-#### The Beloved `tidyverse`
+Explain `install.packages()` and `library()` functions here.
+
+#### A Quick Aside on the Beloved `tidyverse`
+
+Provide a brief primer on base R and why the tidyverse is superior. 
 
 ### Importing Data
 
@@ -33,12 +37,18 @@ The tutorial will be based on the [`tidyverse`](https://www.tidyverse.org/) suit
 
 ### Conclusion
 
-Here. Discuss the multitude of things you can do in addition to what was shown here today. Also provide links to other resources, including:
+This simple introduction has introduced you to the programming language R; how to install the software; importing data and packages; and manipulating, visualising, and modelling data. While we have covered a lot of ground, we have only scratched surface in terms of what R has to offer. R has become a powerful tool in NLP/text analytics, machine learning, geospatial analyses, and interactive web applications (to name a few). Because of this, R has become a serious rival to the more computer programming-oriented language Python in data science.
+
+### Resources
+
+There are a number of resources out there to get you started and keep you learning in R. Hadley Wickham, one of R's biggest gurus, has a wealth of resources that are free and easily accessible to beginners; a simple Google search of him will spit back enough to get you well on your way. 
+
+Other great resources include:
 
 * [R cheat sheets](https://rstudio.com/resources/cheatsheets/)
 * [R Studio Community](https://community.rstudio.com/)
 * [R presence on Twitter](https://twitter.com/Rbloggers), including [We are R-ladies!](https://twitter.com/WeAreRLadies)
-* [Mastering the tidyverse](https://www.tidyverse.org/learn/)
+* [Mastering the tidyverse 1](https://www.tidyverse.org/learn/) and [2](https://moderndive.com/)
 * [R for Data Science](https://r4ds.had.co.nz/)
 * For more advanced stuff, see [Julia Silge's blog](https://juliasilge.com/blog/)
 
