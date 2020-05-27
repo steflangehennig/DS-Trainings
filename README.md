@@ -4,4 +4,4 @@ Repo dedicated to data science training materials. This is intended for people n
 The repo includes (for now):
 
 * Introduction to the `wbstats` package in R, which is used for accessing and analysing the World Bank's data via their API
-* Introduction to R, with a special focus on using the `tidyverse` for data manipulation, visualisation, and analysing
+* Introduction to R, with a special focus on using the `tidyverse` for data manipulation, visualisation, and analysing (_in progress_)
