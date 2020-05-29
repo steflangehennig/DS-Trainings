@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time.  
 
-The tutorial will be based on the [`tidyverse`](https://www.tidyverse.org/) suite of packages. 
+The tutorial will focus on the primary components of exploratory data analysis (EDA), including importing, manipulating, visualising, and modelling data. We will be using the [`tidyverse`](https://www.tidyverse.org/) suite of packages, which makes data analysis easy and efficient! 
 
 ### What is R?
 

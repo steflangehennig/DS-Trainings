@@ -128,8 +128,6 @@ ggplot(dat, aes(x = date, y = value)) + geom_line(aes(colour = country, group = 
 ```
 
 
-
-
 ### **BONUS**: Using R Markdown? Embed a searchable table of results^[This only works for dynamic, not static, documents such as html. If you choose to knit your file to a PDF or Word document, the `DT` functionalities do not work.]
 
 As an added bonus, we can embed the results of our queries in a data table in our document. The `DT` package in R lets you do this very easily. The output can be tailored to show as many lines from the results as you wish, includes a search bar, and provides the option to filter, to name a few.
