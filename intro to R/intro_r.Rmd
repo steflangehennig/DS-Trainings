@@ -11,13 +11,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R for the Win
 
-This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time.  
+This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time. It's used for a number of tasks related to statistics and data science, such as Bayesian methods, unsupervised and supervised machine learning, text analytics, and data visualisation (to name a few!). 
 
-The tutorial will focus on the primary components of exploratory data analysis (EDA), including importing, manipulating, visualising, and modelling data. We will be using the [`tidyverse`](https://www.tidyverse.org/) suite of packages, which makes data analysis easy and efficient! 
+The tutorial will focus on the primary components of exploratory data analysis (EDA), including importing, manipulating, visualising, and modelling data. We will be using the [`tidyverse`](https://www.tidyverse.org/) suite of packages, which makes data analysis very easy and efficient.^[This tutorial will not cover some of the basic aspects of programming in R, such as creating functions and for-loops, but is on the docket for future tutorials.] 
 
 ### What is R?
 
+R is an open-source programming language that anyone can freely use and can contribute to its development. It originated from the programming lanugage [S](https://bookdown.org/rdpeng/rprogdatascience/history-and-overview-of-r.html) and has become one of the most popular and powerful statistical software applications used among many disciplines. The primary reasons behind this is are two-fold: first, unlike proprietary software (Stata, SPSS, Excel), R can be downloaded and immediately put to use without licenses and fees. Second, because it's open-source, it's continuously evolving and on the cutting edge of statistical/data science capabilities.
+
+
 ### Installing R and R Studio
+
+Before getting started, you will need to download R ([here](https://www.r-project.org/)) and R Studio ([here](https://rstudio.com/products/rstudio/download/)). I highly recommend working out of the R Studio IDE. In comparison to just using R, R Studio makes it much easier to manage your data, outputs, and visualisations all in one place. 
 
 ### Installing and Reading in Packages
 
@@ -28,6 +33,8 @@ Explain `install.packages()` and `library()` functions here.
 Provide a brief primer on base R and why the tidyverse is superior. 
 
 ### Importing Data
+
+The dataset we will be using today is...^[There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R [`datasets` package](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html).]
 
 ### Manipulating Data
 
