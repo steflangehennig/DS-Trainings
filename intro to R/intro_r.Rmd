@@ -17,7 +17,7 @@ The tutorial will focus on the primary components of exploratory data analysis (
 
 ### What is R?
 
-R is an open-source programming language that anyone can freely use and can contribute to its development. It originated from the programming lanugage [S](https://bookdown.org/rdpeng/rprogdatascience/history-and-overview-of-r.html) and has become one of the most popular and powerful statistical software applications used among many disciplines. The primary reasons behind this is are two-fold: first, unlike proprietary software (Stata, SPSS, Excel), R can be downloaded and immediately put to use without licenses and fees. Second, because it's open-source, it's continuously evolving and on the cutting edge of statistical/data science capabilities.
+R is an open-source programming language that anyone can freely use and can contribute to its development. It originated from the programming lanugage [S](https://bookdown.org/rdpeng/rprogdatascience/history-and-overview-of-r.html) and has become one of the most popular and powerful statistical software applications used among many disciplines. The primary reasons behind this is are two-fold: first, unlike proprietary software (Stata, SPSS, Excel), R can be downloaded and immediately put to use without licenses and fees. Second, because it's open-source, it's continuously evolving and on the cutting edge of statistical/data science capabilities. Finally, and perhaps most importantly, programming in general allows for reproducability and version control, which results in easier replication and error tracing.  
 
 
 ### Installing R and R Studio
@@ -43,7 +43,7 @@ library(dplyr)
 
 #### A Quick Aside on the Beloved `tidyverse`
 
-Provide a brief primer on base R and why the tidyverse is superior. 
+The `tidyverse` package is a magical compilation of some of the best, most robust, and most powerful packages R has to offer. The point of the tidyverse is to concentrate a suite of top-notch data science packages into one place that work in harmony with one another. Given this philosophy, all of the packages contained in the tidyverse have the same data structure, function design, and consistent syntax. Installing and calling the `tidyverse` package results in having almost all of the data science packages you need in one fell swoop. Check out the [tidyverse homepage](https://www.tidyverse.org/) if you want to learn more. 
 
 ### Importing Data
 
