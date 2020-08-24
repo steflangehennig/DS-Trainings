@@ -9,7 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R for the Win
 
 This is a brief tutorial to get started using the programming language [R](https://www.r-project.org/about.html). R is a very well documented programming language that is developing all the time. It's used for a number of tasks related to statistics and data science, such as Bayesian methods, unsupervised and supervised machine learning, text analytics, and data visualisation (to name a few!). 
 
