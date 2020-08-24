@@ -46,7 +46,17 @@ The `tidyverse` package is a magical compilation of some of the best, most robus
 
 ### Importing Data
 
-The dataset we will be using today is...^[There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R [`datasets` package](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html).]
+The dataset we will be using today is from the [Centre for learning and life chances in knowledge economies and societies (LLAKES)](https://reshare.ukdataservice.ac.uk/851427/) study, which explores inequality in lifelong learning in the UK.^[There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R [`datasets` package](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html).] The data is saved as a `.sav` (SPSS) file, so we'll need to use the `haven` package to import it. Note that the `haven` package allows you to import files in numerous formats, including `.csv`, `.dta`, and `.sas`. We'll import the SPSS file 'perceptions_inequality.sav' as an object called data.
+
+```{r, message=FALSE}
+#install.packages("haven")
+library(haven)
+
+data <- read_sav("perceptions_inequality.sav")
+
+```
+
+
 
 ### Manipulating Data
 
