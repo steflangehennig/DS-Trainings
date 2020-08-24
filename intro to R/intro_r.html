@@ -395,7 +395,12 @@ library(dplyr)</code></pre>
 </div>
 <div id="importing-data" class="section level3">
 <h3>Importing Data</h3>
-<p>The dataset we will be using today is…<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>The dataset we will be using today is from the <a href="https://reshare.ukdataservice.ac.uk/851427/">Centre for learning and life chances in knowledge economies and societies (LLAKES)</a> study, which explores inequality in lifelong learning in the UK.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> The data is saved as a <code>.sav</code> (SPSS) file, so we’ll need to use the <code>haven</code> package to import it. The <code>haven</code> package also allows you to import files in numerous formats, including <code>.csv</code>, <code>.dta</code>, and <code>.sas</code>.</p>
+<p>Below, we’ll import the SPSS file ‘perceptions_inequality.sav’ as an object called <strong>data</strong>. Make sure the data is stored in the working directory where you are running your R session/script.</p>
+<pre class="r"><code>#install.packages(&quot;haven&quot;)
+library(haven)
+
+data &lt;- read_sav(&quot;perceptions_inequality.sav&quot;)</code></pre>
 </div>
 <div id="manipulating-data" class="section level3">
 <h3>Manipulating Data</h3>
