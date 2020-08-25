@@ -45,12 +45,11 @@ library(dplyr)
 The `tidyverse` package is a magical compilation of some of the best, most robust, and most powerful packages R has to offer. The point of the tidyverse is to concentrate a suite of top-notch data science packages into one place that work in harmony with one another. Given this philosophy, all of the packages contained in the tidyverse have the same data structure, function design, and consistent syntax. Installing and calling the `tidyverse` package results in having almost all of the data science packages you need in one fell swoop. Check out the [tidyverse homepage](https://www.tidyverse.org/) if you want to learn more. 
 
 ### Importing Data
+There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R [`datasets` package](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html), which enables automatic data downloads once the function and dataset are called.
 
-The dataset we will be using today is from the [Centre for learning and life chances in knowledge economies and societies (LLAKES)](https://reshare.ukdataservice.ac.uk/851427/) study, which explores inequality in lifelong learning in the UK.^[There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R [`datasets` package](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html).] 
+To illustrate importing data from outside of R's `datasets` package, we will use data from the [Centre for learning and life chances in knowledge economies and societies (LLAKES)](https://reshare.ukdataservice.ac.uk/851427/) study, which explores inequality in lifelong learning in the UK. The data is saved as a .csv file, so we will use the `readr` package to read it into our environment.^[Note that the original data was a `.sav` (SPSS) file, which can be imported using the `haven` package. The `haven` package also allows you to import files in numerous formats, including `.dta` and `.sas`.] 
 
-The data is saved as a `.sav` (SPSS) file, so we can use the `haven` package to import it. The `haven` package also allows you to import files in numerous formats, including `.csv`, `.dta`, and `.sas`. 
-
-Below, we'll import the file 'perceptions_inequality.csv' using the `read.csv` function as an intuitive object called **inequality**. Make sure the data is stored in the working directory where you are running your R session/script.
+Below, we'll import the file 'perceptions_inequality.csv' using the `read_csv` function as an intuitive object called **inequality**. Make sure the data is stored in the working directory where you are running your R session/script.
 
 ```{r, message=FALSE, warning=FALSE, results= "hide"}
 #install.packages("readr")
@@ -64,7 +63,9 @@ glimpse(inequality)
 ```
 
 ### Manipulating Data
-We can further manipulate our **inequality** data frame object to summarise key pieces of information. For example, there is a variable in the dataset called 'fairtreatment' that takes the following values based on respondents' perceptions of whether teachers treat them fairly: 1-agree strongly; 2-agree; 3-neither agree nor disagree; 4-disagree; 5-disagree strongly; 6-don't know. We can get the average for each year in the series using the following code:
+We can further manipulate our **inequality** data frame object to summarise key pieces of information. For example, there is a variable in the dataset called 'fairtreatment' that takes the following values based on respondents' perceptions of whether teachers treat them fairly: 1-agree strongly; 2-agree; 3-neither agree nor disagree; 4-disagree; 5-disagree strongly; 6-don't know. 
+
+Let's hypothesize that there will be an increase in perceptions of unfair treatment by teachers among millennial respondents, and that males will feel this more strongly than females. By futher subsetting our `inequality` dataframe to another object called `treated_fair`, we can (bluntly) test this theory. The code below generates the average for the 'fairtreatment' variable by respondents' birth year and across gender (here, female and male) in the sample:
 
 ```{r}
 treated_fair <- inequality %>%

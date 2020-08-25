@@ -395,9 +395,9 @@ library(dplyr)</code></pre>
 </div>
 <div id="importing-data" class="section level3">
 <h3>Importing Data</h3>
-<p>The dataset we will be using today is from the <a href="https://reshare.ukdataservice.ac.uk/851427/">Centre for learning and life chances in knowledge economies and societies (LLAKES)</a> study, which explores inequality in lifelong learning in the UK.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>The data is saved as a <code>.sav</code> (SPSS) file, so we can use the <code>haven</code> package to import it. The <code>haven</code> package also allows you to import files in numerous formats, including <code>.csv</code>, <code>.dta</code>, and <code>.sas</code>.</p>
-<p>Below, we’ll import the file ‘perceptions_inequality.csv’ using the <code>read.csv</code> function as an intuitive object called <strong>inequality</strong>. Make sure the data is stored in the working directory where you are running your R session/script.</p>
+<p>There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html"><code>datasets</code> package</a>, which enables automatic data downloads once the function and dataset are called.</p>
+<p>To illustrate importing data from outside of R’s <code>datasets</code> package, we will use data from the <a href="https://reshare.ukdataservice.ac.uk/851427/">Centre for learning and life chances in knowledge economies and societies (LLAKES)</a> study, which explores inequality in lifelong learning in the UK. The data is saved as a .csv file, so we will use the <code>readr</code> package to read it into our environment.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>Below, we’ll import the file ‘perceptions_inequality.csv’ using the <code>read_csv</code> function as an intuitive object called <strong>inequality</strong>. Make sure the data is stored in the working directory where you are running your R session/script.</p>
 <pre class="r"><code>#install.packages(&quot;readr&quot;)
 library(readr)
 
@@ -408,7 +408,8 @@ glimpse(inequality)</code></pre>
 </div>
 <div id="manipulating-data" class="section level3">
 <h3>Manipulating Data</h3>
-<p>We can further manipulate our <strong>inequality</strong> data frame object to summarise key pieces of information. For example, there is a variable in the dataset called ‘fairtreatment’ that takes the following values based on respondents’ perceptions of whether teachers treat them fairly: 1-agree strongly; 2-agree; 3-neither agree nor disagree; 4-disagree; 5-disagree strongly; 6-don’t know. We can get the average for each year in the series using the following code:</p>
+<p>We can further manipulate our <strong>inequality</strong> data frame object to summarise key pieces of information. For example, there is a variable in the dataset called ‘fairtreatment’ that takes the following values based on respondents’ perceptions of whether teachers treat them fairly: 1-agree strongly; 2-agree; 3-neither agree nor disagree; 4-disagree; 5-disagree strongly; 6-don’t know.</p>
+<p>Let’s hypothesize that there will be an increase in perceptions of unfair treatment by teachers among millennial respondents, and that males will feel this more strongly than females. By futher subsetting our <code>inequality</code> dataframe to another object called <code>treated_fair</code>, we can (bluntly) test this theory. The code below generates the average for the ‘fairtreatment’ variable by respondents’ birth year and across gender (here, female and male) in the sample:</p>
 <pre class="r"><code>treated_fair &lt;- inequality %&gt;%
   filter(!is.na(fairtreatment), !is.na(birth), !is.na(gender)) %&gt;%
   mutate(birthyear = birth) %&gt;%
@@ -472,7 +473,7 @@ p + theme_minimal()</code></pre>
 <hr />
 <ol>
 <li id="fn1"><p>This tutorial will not cover some of the basic aspects of programming in R, such as creating functions and for-loops, but is on the docket for future tutorials.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html"><code>datasets</code> package</a>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Note that the original data was a <code>.sav</code> (SPSS) file, which can be imported using the <code>haven</code> package. The <code>haven</code> package also allows you to import files in numerous formats, including <code>.dta</code> and <code>.sas</code>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
 
