@@ -47,7 +47,7 @@ The `tidyverse` package is a magical compilation of some of the best, most robus
 ### Importing Data
 There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R [`datasets` package](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html), which enables automatic data downloads once the function and dataset are called.
 
-To illustrate importing data from outside of R's `datasets` package, we will use data from the [Centre for learning and life chances in knowledge economies and societies (LLAKES)](https://reshare.ukdataservice.ac.uk/851427/) study, which explores inequality in lifelong learning in the UK. The data is saved as a .csv file, so we will use the `readr` package to read it into our environment.^[Note that the original data was a `.sav` (SPSS) file, which can be imported using the `haven` package. The `haven` package also allows you to import files in numerous formats, including `.dta` and `.sas`.] 
+To illustrate importing data from outside of R's `datasets` package, we will use data from the [Centre for learning and life chances in knowledge economies and societies (LLAKES)](https://reshare.ukdataservice.ac.uk/851427/) study, which explores inequality in lifelong learning in the UK. The data is saved as a .csv file, so we will use the `readr` package from the `tidyverse` to import it into our environment.^[Note that the original data was a `.sav` (SPSS) file, which can be imported using the `haven` package. The `haven` package also allows you to import files in numerous formats, including `.dta` and `.sas`.] 
 
 Below, we'll import the file 'perceptions_inequality.csv' using the `read_csv` function as an intuitive object called **inequality**. Make sure the data is stored in the working directory where you are running your R session/script.
 
@@ -71,7 +71,7 @@ Let's hypothesize that there will be an increase in perceptions of unfair treatm
 treated_fair <- inequality %>%
   filter(!is.na(fairtreatment), !is.na(birth), !is.na(gender)) %>%
   mutate(birthyear = birth) %>%
-  filter(birthyear >= 1980, birthyear <=1994) %>%
+  filter(birthyear >= 1982, birthyear <=1994) %>%
   group_by(birthyear, gender) %>%
   summarize(avg_fair = mean(fairtreatment))
 
@@ -80,6 +80,7 @@ treated_fair
 ```
 
 ### Visualisation using `ggplot2` 
+Based on our data output above, we can see that there are some differences based on respondent birth year, as well as their self-identified gender. We can also visualise this relationship using the `ggplot2` package. The gg in `ggplot2` stands for 'grammar of graphics', with the user specifying the data and ggplot2 mapping it onto a set of aesthetics. It takes some time to grasp, but it very flexible and results in very nice visualisations.
 
 ```{r}
 library(ggplot2)
@@ -98,6 +99,7 @@ p + theme_minimal()
 
 
 ### A Simple Model
+Mmmmm we'll see about this...
 
 ### Conclusion
 
