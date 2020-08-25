@@ -46,21 +46,34 @@ The `tidyverse` package is a magical compilation of some of the best, most robus
 
 ### Importing Data
 
-The dataset we will be using today is from the [Centre for learning and life chances in knowledge economies and societies (LLAKES)](https://reshare.ukdataservice.ac.uk/851427/) study, which explores inequality in lifelong learning in the UK.^[There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R [`datasets` package](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html).] The data is saved as a `.sav` (SPSS) file, so we'll need to use the `haven` package to import it. The `haven` package also allows you to import files in numerous formats, including `.csv`, `.dta`, and `.sas`. 
+The dataset we will be using today is from the [Centre for learning and life chances in knowledge economies and societies (LLAKES)](https://reshare.ukdataservice.ac.uk/851427/) study, which explores inequality in lifelong learning in the UK.^[There are a number of datasets that are built into R that I encourage you to play around with. They are very easy to download and can be found in the R [`datasets` package](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html).] The data is saved as a `.sav` (SPSS) file, so we can use the `haven` package to import it. The `haven` package also allows you to import files in numerous formats, including `.csv`, `.dta`, and `.sas`. 
 
-Below, we'll import the SPSS file 'perceptions_inequality.sav' as an object called **data**. Make sure the data is stored in the working directory where you are running your R session/script.
+Below, we'll import the file 'perceptions_inequality.sav' as an intuitive object called **inequality**. Make sure the data is stored in the working directory where you are running your R session/script.
 
 ```{r, message=FALSE}
 #install.packages("haven")
 library(haven)
 
-data <- read_sav("perceptions_inequality.sav")
+inequality <- read_sav("perceptions_inequality.sav")
+
+# take a look
+glimpse(inequality)
 
 ```
 
-
-
 ### Manipulating Data
+We can further manipulate our **inequality** data frame object to summarise key pieces of information. For example, there is a variable in the dataset called 'fairtreatment' that takes the following values based on respondents' perceptions of whether teachers treat them fairly: 1-agree strongly; 2-agree; 3-neither agree nor disagree; 4-disagree; 5-disagree strongly; 6-don't know. We can get the average for each year in the series using the following code:
+
+```{r}
+treated_fair <- inequality %>%
+  filter(!is.na(fairtreatment), !is.na(birth)) %>%
+  mutate(birthyear = birth) %>%
+  group_by(birthyear) %>%
+  summarize(avg_fair = mean(fairtreatment))
+
+treated_fair
+
+```
 
 ### Visualisation using `ggplot2` 
 
